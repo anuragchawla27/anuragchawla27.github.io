@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>anuragchawla27 - Data Analyst & Daya Science & AI Automation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0A1420;
+    --bg-2: #0E1B2C;
+    --surface: #101E32;
+    --surface-2: #14263D;
+    --border: #223350;
+    --teal: #2DD9C4;
+    --teal-dim: #1B8F80;
+    --amber: #F2B84B;
+    --text: #E7EDF7;
+    --text-dim: #93A2BC;
+    --text-faint: #5E6E8C;
+    --mono: 'JetBrains Mono', monospace;
+    --sora: 'Sora', sans-serif;
+    --inter: 'Inter', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--inter);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--teal-dim);color:#fff;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  /* subtle grid backdrop */
+  .grid-bg{
+    position:fixed;inset:0;z-index:-1;
+    background-image:
+      linear-gradient(rgba(45,217,196,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45,217,196,0.035) 1px, transparent 1px);
+    background-size:48px 48px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,20,32,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  nav{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px 32px;max-width:1080px;margin:0 auto;
+  }
+  .logo{
+    font-family:var(--mono);font-weight:600;font-size:15px;color:var(--text);
+    letter-spacing:-0.02em;
+  }
+  .logo span{color:var(--teal);}
+  .nav-links{display:flex;gap:28px;font-family:var(--mono);font-size:13px;color:var(--text-dim);}
+  .nav-links a{transition:color .2s;}
+  .nav-links a:hover{color:var(--teal);}
+  .nav-links a:focus-visible, a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:2px;}
+  @media(max-width:640px){.nav-links{display:none;}}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:100px 0 80px;position:relative;}
+  .eyebrow{
+    font-family:var(--mono);font-size:12.5px;color:var(--teal);
+    display:flex;align-items:center;gap:10px;margin-bottom:24px;
+    opacity:0;animation:fadeUp .6s ease forwards;
+  }
+  .eyebrow::before{content:'';width:7px;height:7px;background:var(--teal);border-radius:50%;box-shadow:0 0 10px var(--teal);}
+  h1{
+    font-family:var(--sora);font-weight:700;font-size:clamp(34px,5.5vw,58px);
+    line-height:1.08;letter-spacing:-0.02em;max-width:820px;
+    opacity:0;animation:fadeUp .7s ease .1s forwards;
+  }
+  h1 .hl{color:var(--teal);}
+  .hero-sub{
+    font-size:17px;color:var(--text-dim);max-width:600px;margin-top:22px;
+    opacity:0;animation:fadeUp .7s ease .22s forwards;
+  }
+  .hero-cta{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;
+    opacity:0;animation:fadeUp .7s ease .34s forwards;}
+  .btn{
+    font-family:var(--mono);font-size:13.5px;font-weight:500;
+    padding:13px 22px;border-radius:6px;transition:all .2s;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-primary{background:var(--teal);color:#06231F;}
+  .btn-primary:hover{background:#4FE8D5;transform:translateY(-1px);}
+  .btn-ghost{border:1px solid var(--border);color:var(--text);}
+  .btn-ghost:hover{border-color:var(--teal);color:var(--teal);}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+  /* query bar signature */
+  .query-panel{
+    margin-top:56px;background:var(--surface);border:1px solid var(--border);
+    border-radius:10px;overflow:hidden;max-width:720px;
+    opacity:0;animation:fadeUp .7s ease .46s forwards;
+  }
+  .query-head{
+    display:flex;align-items:center;gap:8px;padding:10px 16px;
+    border-bottom:1px solid var(--border);background:var(--surface-2);
+  }
+  .dot{width:9px;height:9px;border-radius:50%;}
+  .dot:nth-child(1){background:#F2555A;}
+  .dot:nth-child(2){background:#F2B84B;}
+  .dot:nth-child(3){background:#2DD9C4;}
+  .query-title{font-family:var(--mono);font-size:12px;color:var(--text-faint);margin-left:8px;}
+  .query-body{padding:18px 20px;font-family:var(--mono);font-size:13.5px;}
+  .query-body .kw{color:#C792EA;}
+  .query-body .fn{color:var(--teal);}
+  .query-body .str{color:var(--amber);}
+  .query-body .cm{color:var(--text-faint);}
+  .query-result{
+    border-top:1px dashed var(--border);margin-top:14px;padding-top:14px;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;
+  }
+  .qr-item .num{font-family:var(--mono);font-size:20px;color:var(--teal);font-weight:600;}
+  .qr-item .lbl{font-size:11.5px;color:var(--text-faint);margin-top:2px;}
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:80px 0;border-top:1px solid var(--border);}
+  .sec-label{
+    font-family:var(--mono);font-size:12.5px;color:var(--teal);
+    display:flex;align-items:center;gap:10px;margin-bottom:14px;
+  }
+  .sec-label::before{content:'//';color:var(--text-faint);}
+  h2{font-family:var(--sora);font-size:clamp(24px,3.4vw,32px);font-weight:700;letter-spacing:-0.01em;max-width:600px;}
+  .sec-desc{color:var(--text-dim);max-width:560px;margin-top:12px;font-size:15px;}
+
+  /* ---------- PROJECTS ---------- */
+  .project{
+    border:1px solid var(--border);border-radius:12px;background:var(--surface);
+    padding:28px 30px;margin-top:22px;transition:border-color .25s, transform .25s;
+  }
+  .project:hover{border-color:var(--teal-dim);transform:translateY(-2px);}
+  .project.featured{border-color:var(--teal-dim);background:linear-gradient(160deg, var(--surface) 60%, rgba(45,217,196,0.05));}
+  .p-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;}
+  .p-title{font-family:var(--sora);font-size:19px;font-weight:600;}
+  .p-tag{font-family:var(--mono);font-size:11px;color:var(--amber);border:1px solid rgba(242,184,75,0.35);padding:3px 9px;border-radius:20px;white-space:nowrap;}
+  .p-desc{color:var(--text-dim);font-size:14.5px;margin-top:12px;max-width:640px;}
+  .p-metrics{display:flex;gap:26px;margin-top:18px;flex-wrap:wrap;}
+  .p-metrics .m-num{font-family:var(--mono);font-size:18px;color:var(--teal);font-weight:600;}
+  .p-metrics .m-lbl{font-size:11px;color:var(--text-faint);margin-top:1px;}
+  .p-stack{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+  .chip{font-family:var(--mono);font-size:11px;color:var(--text-dim);background:var(--surface-2);border:1px solid var(--border);padding:4px 10px;border-radius:5px;}
+  .p-links{display:flex;gap:18px;margin-top:20px;font-family:var(--mono);font-size:12.5px;}
+  .p-links a{color:var(--teal);border-bottom:1px solid transparent;transition:border-color .2s;}
+  .p-links a:hover{border-color:var(--teal);}
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:28px;}
+  .skill-col{background:var(--surface);padding:24px 26px;}
+  .skill-col h3{font-family:var(--mono);font-size:12px;color:var(--amber);margin-bottom:14px;letter-spacing:0.02em;}
+  .skill-col ul{list-style:none;}
+  .skill-col li{font-size:14px;color:var(--text-dim);padding:5px 0;position:relative;padding-left:16px;}
+  .skill-col li::before{content:'▸';position:absolute;left:0;color:var(--teal-dim);}
+
+  /* ---------- EXPERIENCE ---------- */
+  .exp-item{display:grid;grid-template-columns:140px 1fr;gap:24px;padding:22px 0;border-top:1px solid var(--border);}
+  .exp-item:first-of-type{border-top:none;}
+  .exp-when{font-family:var(--mono);font-size:12px;color:var(--text-faint);padding-top:2px;}
+  .exp-role{font-family:var(--sora);font-weight:600;font-size:16px;}
+  .exp-org{color:var(--teal);font-size:13.5px;margin-top:2px;}
+  .exp-desc{color:var(--text-dim);font-size:14px;margin-top:8px;max-width:560px;}
+
+  /* ---------- CONTACT ---------- */
+  .contact{text-align:left;}
+  .contact-links{display:flex;gap:16px;margin-top:28px;flex-wrap:wrap;}
+  .clink{
+    font-family:var(--mono);font-size:13.5px;padding:12px 20px;border:1px solid var(--border);
+    border-radius:6px;transition:all .2s;
+  }
+  .clink:hover{border-color:var(--teal);color:var(--teal);}
+
+  footer{padding:36px 0;text-align:center;font-family:var(--mono);font-size:12px;color:var(--text-faint);border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<header>
+  <nav>
+    <div class="logo">anurag<span>.chawla</span></div>
+    <div class="nav-links">
+      <a href="#projects">projects</a>
+      <a href="#skills">skills</a>
+      <a href="#experience">experience</a>
+      <a href="#contact">contact</a>
+    </div>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none;padding-top:90px;">
+    <div class="eyebrow">OPEN TO DATA ANALYST / DATA SCIENTIST / AI AUTOMATION ROLES</div>
+    <h1>I turn messy datasets into decisions <span class="hl">worth acting on.</span></h1>
+    <p class="hero-sub">Graduate Computer Science (Data Science) student, Punjab Technical University. I build end-to-end analytics — from raw hospital and transaction data to dashboards, models, and automated pipelines that ship.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View projects →</a>
+      <a href="#contact" class="btn btn-ghost">Get in touch</a>
+    </div>
+
+    <div class="query-panel">
+      <div class="query-head">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="query-title">portfolio_summary.sql</div>
+      </div>
+      <div class="query-body">
+<span class="cm">-- what four years of projects add up to</span><br>
+<span class="kw">SELECT</span> <span class="fn">impact</span> <span class="kw">FROM</span> anurag.projects
+<span class="kw">WHERE</span> status = <span class="str">'shipped'</span>;
+        <div class="query-result">
+          <div class="qr-item"><div class="num">30%</div><div class="lbl">overstock waste identified</div></div>
+          <div class="qr-item"><div class="num">91%</div><div class="lbl">recall, churn model in prod</div></div>
+          <div class="qr-item"><div class="num">100K+</div><div class="lbl">patient records analyzed</div></div>
+          <div class="qr-item"><div class="num">6</div><div class="lbl">portfolio projects shipped</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="sec-label">selected work</div>
+    <h2>Projects that answer a business question, not just a technical one</h2>
+    <p class="sec-desc">Each one starts from a real dataset and ends with a number someone could act on.</p>
+
+    <div class="project featured">
+      <div class="p-top">
+        <div class="p-title">Inventory Optimization Analysis</div>
+        <div class="p-tag">DATA ANALYST</div>
+      </div>
+      <p class="p-desc">Analyzed 1.2M+ transactions to quantify where inventory dollars were being wasted, and where they could be recovered.</p>
+      <div class="p-metrics">
+        <div><div class="m-num">30.01%</div><div class="m-lbl">overstock waste identified</div></div>
+        <div><div class="m-num">12.34%</div><div class="m-lbl">holding cost reduction opportunity</div></div>
+        <div><div class="m-num">1.2M+</div><div class="m-lbl">transactions processed</div></div>
+      </div>
+      <div class="p-stack"><span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">SQL</span></div>
+    </div>
+
+    <div class="project featured">
+      <div class="p-top">
+        <div class="p-title">Healthcare Patient Readmission Analytics</div>
+        <div class="p-tag">DATA ANALYST</div>
+      </div>
+      <p class="p-desc">Cleaned and analyzed the Diabetes 130-US Hospitals dataset to flag which patient segments drive readmission risk, surfaced through a Power BI dashboard.</p>
+      <div class="p-metrics">
+        <div><div class="m-num">100K+</div><div class="m-lbl">patient records</div></div>
+        <div><div class="m-num">48%+</div><div class="m-lbl">readmission rate, ages 70–90</div></div>
+        <div><div class="m-num">68.58%</div><div class="m-lbl">readmission rate, very-high-risk group</div></div>
+      </div>
+      <div class="p-stack"><span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">MySQL</span><span class="chip">Power BI</span></div>
+    </div>
+
+    <div class="project">
+      <div class="p-top">
+        <div class="p-title">Customer Churn Prediction</div>
+        <div class="p-tag">DEPLOYED</div>
+      </div>
+      <p class="p-desc">End-to-end ML system that predicts customer churn and serves live predictions through a deployed API and dashboard — my only fully solo-built and shipped project.</p>
+      <div class="p-metrics">
+        <div><div class="m-num">91%</div><div class="m-lbl">recall</div></div>
+      </div>
+      <div class="p-stack"><span class="chip">FastAPI</span><span class="chip">Streamlit</span><span class="chip">Render</span></div>
+    </div>
+
+    <div class="project">
+      <div class="p-top">
+        <div class="p-title">Four-Agent Content Automation Pipeline</div>
+        <div class="p-tag">AI AUTOMATION</div>
+      </div>
+      <p class="p-desc">An n8n workflow where four LLM agents pull trending topics, generate prompts, draft blog posts, and log results — running fully locally via Docker.</p>
+      <div class="p-stack"><span class="chip">n8n</span><span class="chip">Gemini</span><span class="chip">YouTube Data API</span><span class="chip">SerpAPI</span><span class="chip">Docker</span></div>
+    </div>
+
+    <div class="project">
+      <div class="p-top">
+        <div class="p-title">RAG Meeting Assistant</div>
+        <div class="p-tag">AI / NLP</div>
+      </div>
+      <p class="p-desc">Retrieval-augmented assistant that transcribes, translates, and lets you query meeting recordings in natural language.</p>
+      <div class="p-stack"><span class="chip">LangChain</span><span class="chip">Mistral</span><span class="chip">ChromaDB</span><span class="chip">faster-whisper</span><span class="chip">Streamlit</span></div>
+    </div>
+
+    <div class="project">
+      <div class="p-top">
+        <div class="p-title">NHS Data Analytics (ZenoTalent Internship)</div>
+        <div class="p-tag">INTERNSHIP</div>
+      </div>
+      <p class="p-desc">Four-week data science internship on NHS mental health datasets — hypothesis testing, clustering, anomaly detection, and a 6-stage ETL pipeline.</p>
+      <div class="p-metrics">
+        <div><div class="m-num">771K+</div><div class="m-lbl">rows in ETL pipeline (Feb 2026)</div></div>
+        <div><div class="m-num">318</div><div class="m-lbl">anomalies flagged in CCG prescribing data</div></div>
+      </div>
+      <div class="p-stack"><span class="chip">Python</span><span class="chip">Scikit-learn</span><span class="chip">Isolation Forest</span><span class="chip">K-Means</span></div>
+    </div>
+
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="sec-label">toolkit</div>
+    <h2>What I build with</h2>
+    <div class="skills-grid">
+      <div class="skill-col">
+        <h3>ANALYSIS</h3>
+        <ul><li>Python (Pandas, NumPy)</li><li>SQL / MySQL</li><li>Hypothesis testing</li><li>Power BI</li></ul>
+      </div>
+      <div class="skill-col">
+        <h3>MACHINE LEARNING</h3>
+        <ul><li>Scikit-learn</li><li>Clustering & anomaly detection</li><li>Model deployment (FastAPI)</li></ul>
+      </div>
+      <div class="skill-col">
+        <h3>AI / AUTOMATION</h3>
+        <ul><li>LangChain + RAG</li><li>n8n workflows</li><li>LLM prompt pipelines</li></ul>
+      </div>
+      <div class="skill-col">
+        <h3>DELIVERY</h3>
+        <ul><li>Streamlit dashboards</li><li>Docker</li><li>Git / GitHub</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="sec-label">background</div>
+    <h2>Experience</h2>
+
+    <div class="exp-item">
+      <div class="exp-when">2026</div>
+      <div>
+        <div class="exp-role">Data Science Intern (DS-2)</div>
+        <div class="exp-org">ZenoTalent — AI Mental Health UK Project</div>
+        <div class="exp-desc">Worked with NHS datasets across hypothesis testing, clustering, anomaly detection, and ETL. Later co-reviewed intern deliverables and caught a critical data leakage issue before it reached production.</div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-when">Prior</div>
+      <div>
+        <div class="exp-role">Data Science Trainee</div>
+        <div class="exp-org">Neo Skillz</div>
+        <div class="exp-desc">Foundational data science training.</div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="sec-label">get in touch</div>
+    <h2>Open to Data Analyst, Data Scientist, and AI Automation roles.</h2>
+    <div class="contact-links">
+      <a class="clink" href="https://github.com/anuragchawla27" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="clink" href="mailto:anuragchawla7777@gmail.com">Email</a>
+      <a class="clink" href="#https://www.linkedin.com/in/anurag-chawla-4a0786220" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>Built by Anurag Chawla - 2026</footer>
+
+</body>
+</html>
